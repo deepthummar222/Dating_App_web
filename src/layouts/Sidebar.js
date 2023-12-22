@@ -57,7 +57,10 @@ const Sidebar = () => {
   });
 
   useEffect(() => {
-    setRoute((prev) => ({ to: location.pathname, from: prev.to }));
+    setRoute((prev) => {
+      localStorage.setItem("data", JSON.stringify({ to: location.pathname, from: prev.to }));
+      return { to: location.pathname, from: prev.to };
+    });
   }, [location]);
 
   if (route.to === route.from) {
